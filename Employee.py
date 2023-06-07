@@ -46,25 +46,29 @@ def calculateWage():
         Returns if the daily wage till a condition
     """
     working_hrs=0
-    current_working_day=0
+    current_working_day=1
     current_wages=0
-    daily_wage=[]
-    while (working_hrs<=100 and current_working_day<20):
+    daily_wage={}
+    while (working_hrs<=100 and current_working_day<=20):
+        days=(f"day {current_working_day}")
         attedance=random.randint(0,2)
         if attedance==0:
             wage=wage_per_hr*full_day_hr
-            daily_wage.append(wage)
+            # daily_wage.append(wage)
+            daily_wage[days]=wage
             current_wages+=wage
             working_hrs+=8   
         elif attedance==1:
             wage=wage_per_hr*half_day_hr
-            daily_wage.append(wage)
+            # daily_wage.append(wage)
+            daily_wage[days]=wage
             current_wages+=wage
             working_hrs+=4
         else:
-            daily_wage.append(0)
+            daily_wage[days]=0
         current_working_day+=1
-    return (f" The Daily wage is :{daily_wage} \n The total wage is {current_wages} \n The total days the worker worked is {current_working_day}")
+
+    return (f" The Daily wage is :{daily_wage} \n The total wage is {current_wages} \n The total days the worker worked is {current_working_day-1}")
 def main():
     # Employee_attedance()     # printing if Emploee is absent or present
     print(calculateWage())        # printing the Emploee Wages
